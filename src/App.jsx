@@ -5,15 +5,18 @@ function App() {
   const [selectedWebsite, setSelectedWebsite] = useState("");
   const [error, setError] = useState(null);
   const [productData, setProductData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // clear previous states and errors
+    // Clear previous states and errors
     setError(null);
     setProductData(null);
+    setLoading(true); // Set loading to true when starting fetch
 
     if (!url || !selectedWebsite) {
       setError("Please enter a URL and select a website");
+      setLoading(false); // Set loading to false on error
       return;
     }
 
@@ -32,6 +35,8 @@ function App() {
       }
     } catch (err) {
       setError("An error occurred while fetching data.");
+    } finally {
+      setLoading(false); // Set loading to false after fetch is complete
     }
   };
 
@@ -54,7 +59,30 @@ function App() {
             required
           />
         </div>
-
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="website"
+              value="swiggy-instamart"
+              checked={selectedWebsite === "swiggy-instamart"}
+              onChange={(e) => setSelectedWebsite(e.target.value)}
+            />
+            Swiggy Instamart
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="website"
+              value="zepto"
+              checked={selectedWebsite === "zepto"}
+              onChange={(e) => setSelectedWebsite(e.target.value)}
+            />
+            Zepto
+          </label>
+        </div>
         <div>
           <label>
             <input
@@ -67,20 +95,6 @@ function App() {
             Amazon
           </label>
         </div>
-
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="website"
-              value="flipkart"
-              checked={selectedWebsite === "flipkart"}
-              onChange={(e) => setSelectedWebsite(e.target.value)}
-            />
-            Flipkart
-          </label>
-        </div>
-
         <div>
           <label>
             <input
@@ -93,7 +107,6 @@ function App() {
             Big Basket
           </label>
         </div>
-
         <div>
           <label>
             <input
@@ -106,12 +119,26 @@ function App() {
             Jio Mart
           </label>
         </div>
-
-        <button type="submit">Submit</button>
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="website"
+              value="blinkit"
+              checked={selectedWebsite === "blinkit"}
+              onChange={(e) => setSelectedWebsite(e.target.value)}
+            />
+            Blinkit
+          </label>
+        </div>
+        <button type="submit" disabled={loading}>
+          Submit
+        </button>{" "}
+        {/* Disable button during loading */}
       </form>
-
+      {loading && <p style={{ color: "blue" }}>Analyzing...</p>}{" "}
+      {/* Loading state */}
       {error && <p style={{ color: "red" }}>{error}</p>}
-
       {productData && (
         <div style={{ marginTop: "20px" }}>
           <h3>Extracted Product Data:</h3>

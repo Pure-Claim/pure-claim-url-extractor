@@ -1,0 +1,40 @@
+.Container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 25px;
+}
+.UrlForm {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  background-color: rgb(196, 205, 237);
+  border-radius: 10px;
+  /* border: 2px solid black; */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  padding: 20px;
+}
+.InputField {
+  padding: 15px;
+  font-size: 20px;
+  margin: 10px;
+}
+.SiteLabel {
+  padding: 10px;
+  font-size: 20spx;
+  width: 90%;
+  margin: auto;
+}
+.SubmitBtn {
+  padding: 10px 20px;
+  width: 30%;
+  margin: auto;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+}

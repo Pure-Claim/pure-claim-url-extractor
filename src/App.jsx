@@ -41,101 +41,85 @@ function App() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        flexDirection: "column",
-      }}>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="Container">
+      <div className="UrlForm">
+        <input
+          type="url"
+          placeholder="Enter product URL"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          required
+          className="InputField"
+        />
+        <label className="SiteLabel">
           <input
-            type="url"
-            placeholder="Enter product URL"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            required
+            type="radio"
+            name="website"
+            value="swiggy-instamart"
+            checked={selectedWebsite === "swiggy-instamart"}
+            onChange={(e) => setSelectedWebsite(e.target.value)}
           />
-        </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="website"
-              value="swiggy-instamart"
-              checked={selectedWebsite === "swiggy-instamart"}
-              onChange={(e) => setSelectedWebsite(e.target.value)}
-            />
-            Swiggy Instamart
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="website"
-              value="zepto"
-              checked={selectedWebsite === "zepto"}
-              onChange={(e) => setSelectedWebsite(e.target.value)}
-            />
-            Zepto
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="website"
-              value="amazon"
-              checked={selectedWebsite === "amazon"}
-              onChange={(e) => setSelectedWebsite(e.target.value)}
-            />
-            Amazon
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="website"
-              value="bigbasket"
-              checked={selectedWebsite === "bigbasket"}
-              onChange={(e) => setSelectedWebsite(e.target.value)}
-            />
-            Big Basket
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="website"
-              value="jiomart"
-              checked={selectedWebsite === "jiomart"}
-              onChange={(e) => setSelectedWebsite(e.target.value)}
-            />
-            Jio Mart
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="website"
-              value="blinkit"
-              checked={selectedWebsite === "blinkit"}
-              onChange={(e) => setSelectedWebsite(e.target.value)}
-            />
-            Blinkit
-          </label>
-        </div>
-        <button type="submit" disabled={loading}>
+          Swiggy Instamart
+        </label>
+        <label className="SiteLabel">
+          <input
+            type="radio"
+            name="website"
+            value="zepto"
+            checked={selectedWebsite === "zepto"}
+            onChange={(e) => setSelectedWebsite(e.target.value)}
+          />
+          Zepto
+        </label>
+        <label className="SiteLabel">
+          <input
+            type="radio"
+            name="website"
+            value="amazon"
+            checked={selectedWebsite === "amazon"}
+            onChange={(e) => setSelectedWebsite(e.target.value)}
+          />
+          Amazon
+        </label>
+        <label className="SiteLabel">
+          <input
+            type="radio"
+            name="website"
+            value="bigbasket"
+            checked={selectedWebsite === "bigbasket"}
+            onChange={(e) => setSelectedWebsite(e.target.value)}
+          />
+          Big Basket
+        </label>
+        <label className="SiteLabel">
+          <input
+            type="radio"
+            name="website"
+            value="jiomart"
+            checked={selectedWebsite === "jiomart"}
+            onChange={(e) => setSelectedWebsite(e.target.value)}
+          />
+          Jio Mart
+        </label>
+        <label className="SiteLabel">
+          <input
+            type="radio"
+            name="website"
+            value="blinkit"
+            checked={selectedWebsite === "blinkit"}
+            onChange={(e) => setSelectedWebsite(e.target.value)}
+          />
+          Blinkit
+        </label>
+        <button
+          type="submit"
+          disabled={loading}
+          className="SubmitBtn"
+          onClick={handleSubmit}>
           Submit
         </button>{" "}
-        {/* Disable button during loading */}
-      </form>
+      </div>
+      {/* Disable button during loading */}
       {loading && <p style={{ color: "blue" }}>Analyzing...</p>}{" "}
       {/* Loading state */}
       {error && <p style={{ color: "red" }}>{error}</p>}
